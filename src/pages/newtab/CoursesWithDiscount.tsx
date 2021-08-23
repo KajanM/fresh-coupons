@@ -6,9 +6,19 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { CourseWithDiscount } from './CourseWithDiscount'
-import { courses } from '../../assets/mock/udemy-1'
+import { Course } from '../../models/course'
+import { useEffect, useState } from 'react'
 
 export const CoursesWithDiscount = () => {
+  const [courses, setCourses] = useState<{[id: string]: Course}>({});
+
+  useEffect(() => {
+    console.log('initializing courses from local storage')
+    chrome.storage.sync.get(['courses'], function(result) {
+      setCourses(result.courses)
+    })
+  }, [])
+
   return (
     <Box as="section" bg={mode('gray.600', 'inherit')} py="12">
       <Box maxW={{ base: 'xl', md: '7xl' }} mx="auto" px={{ md: '8' }}>

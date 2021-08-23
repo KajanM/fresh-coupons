@@ -1,9 +1,8 @@
 {
   "manifest_version": 3,
   "background": {
-    "scripts": [
-      "background/index.ts"
-    ]
+    "service_worker": "service_worker.ts",
+    "type": "module"
   },
   "content_scripts": [
     {
@@ -15,6 +14,9 @@
         "http://*/*"
       ]
     }
+  ],
+  "permissions": [
+    "storage"
   ],
   "chrome_url_overrides": {
     "newtab": "pages/newtab/index.html"
