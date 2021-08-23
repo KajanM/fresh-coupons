@@ -6,7 +6,7 @@ export function useCourses(): {[id: string]: Course} {
 
   useEffect(() => {
     console.log('initializing courses from local storage')
-    chrome.storage.sync.get(['courses'], function(result) {
+    chrome.storage.local.get(['courses'], function(result) {
       console.log('result', result)
       setCourses(result.courses || {})
     })
