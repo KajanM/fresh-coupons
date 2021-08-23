@@ -15,6 +15,9 @@
       ]
     }
   ],
+  "chrome_url_overrides": {
+    "newtab": "pages/newtab/index.html"
+  },
   "browser_action": {
     "default_popup": "pages/popup/index.html"
   },
