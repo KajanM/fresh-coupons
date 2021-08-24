@@ -2,7 +2,7 @@ import yaml from 'js-yaml'
 import { SyncMeta } from '../models/sync-meta'
 import { Course } from '../models/course'
 
-const API_PREFIX = 'https://bitbucket.org/gmkajan/fresh-coupons-data/raw/a1deedeafb9f90198e392d673873b5672f76d822/'
+const API_PREFIX = 'https://bitbucket.org/gmkajan/fresh-coupons-data/raw/master/'
 
 export async function fetchCoursesAsync(timestamp: string): Promise<{ [id: string]: Course } | null> {
   try {
