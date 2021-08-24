@@ -11,8 +11,7 @@ export async function fetchCoursesAsync(timestamp: string): Promise<{ [id: strin
       console.error(`got ${response.status}:${response.statusText} status code, when fetching course data`)
       return null
     }
-    const data = await response.json()
-    return data
+    return await response.json()
   } catch (e) {
     console.error('an error occurred while fetching course data', e)
   }
