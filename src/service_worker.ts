@@ -3,7 +3,7 @@ import { fetchCoursesAsync, fetchSyncMetaAsync } from './api/courses-api'
 chrome.runtime.onInstalled.addListener(  async function() {
   console.log('extension installed')
   const meta = await fetchSyncMetaAsync()
-  const lastSyncTime = new Date(meta.last_synced)
+  if(meta == null) return
   console.log('meta', meta)
   console.log('last', lastSyncTime)
 
