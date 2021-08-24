@@ -1,6 +1,6 @@
 import { fetchCoursesAsync, fetchSyncMetaAsync } from './api/courses-api'
 import { StorageKeys } from './models/storage-keys'
-import { SyncMeta } from './models/sync-meta'
+import { SyncStorage } from './models/sync-storage'
 
 chrome.runtime.onInstalled.addListener(onInstalledAsync)
 
@@ -14,9 +14,9 @@ async function initializeCoursesFromApiAsync() {
   console.log('meta', meta)
   if(meta == null) return
 
-  chrome.storage.sync.get([StorageKeys.Meta], async (result) => {
-    const lastSyncMeta: SyncMeta = result[StorageKeys.Meta]
-    if(lastSyncMeta.lastSynced === meta.lastSynced) return // no new updates
+  chrome.storage.sync.get([StorageKeys.Meta], async (result: SyncStorage) => {
+    const lastSyncMeta = result[StorageKeys.Meta]
+    if(lastSyncMeta && lastSyncMeta.lastSynced === meta.lastSynced) return // no new updates
 
     const courses = await fetchCoursesAsync(meta.lastSynced)
 
