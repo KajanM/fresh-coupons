@@ -1,4 +1,3 @@
-import yaml from 'js-yaml'
 import { SyncMeta } from '../models/sync-meta'
 import { Course } from '../models/course'
 
@@ -22,13 +21,13 @@ export async function fetchCoursesAsync(timestamp: string): Promise<{ [id: strin
 export async function fetchSyncMetaAsync(): Promise<SyncMeta | null> {
   console.log('fetching sync meta')
   try {
-    const response = await fetch(`${API_PREFIX}meta.yml`)
+    const response = await fetch(`${API_PREFIX}meta.json`)
     if(!response.ok) {
       console.error(`got ${response.status}:${response.statusText} status code, when fetching meta data`)
       return null;
     }
 
-    return yaml.load(await response.text()) as SyncMeta
+    return await response.json()
   } catch (e) {
     console.error('unable to fetch meta data', e)
   }
