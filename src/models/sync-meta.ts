@@ -1,3 +1,3 @@
 export interface SyncMeta {
-  last_synced: string
+  lastSynced: string
 }
