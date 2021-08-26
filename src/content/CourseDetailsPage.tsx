@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {CouponAvailableNotification} from "./CouponAvailableNotification";
 
-import {ChakraProvider} from '@chakra-ui/react';
+import {ChakraProvider, Text} from '@chakra-ui/react';
 import {useCourses} from "../hooks/useCourses";
 import {Course} from "../models/course";
-
-enum CouponState {
-  Found,
-  Applied,
-  NotFound,
-}
+import {CouponState} from "../helpers/coupon-state";
+import {determineCouponStateAsync} from "../helpers/udemy-course-details-page-helpers";
 
 function CourseDetailsPage() {
   const [couponState, setCouponState] = useState<CouponState>(CouponState.NotFound)
@@ -18,17 +14,17 @@ function CourseDetailsPage() {
 
   useEffect(() => {
     const currentUrl = location.href.split('?')[0]
-    console.log('courses', courses)
     const courseDetails = courses[currentUrl]
     if (courseDetails) {
-      setCouponState(CouponState.Found)
+      determineCouponStateAsync().then(setCouponState)
       setCourseDetails(courseDetails)
     }
   }, [courses])
 
   return (
     <ChakraProvider>
-      {couponState === CouponState.Found && <CouponAvailableNotification course={courseDetails!}/>}
+      {couponState === CouponState.Pending && <CouponAvailableNotification course={courseDetails!}/>}
+      {couponState === CouponState.Applied && <Text>Coupon applied</Text>}
     </ChakraProvider>
   )
 }
