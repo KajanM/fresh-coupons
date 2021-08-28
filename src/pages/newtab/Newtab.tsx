@@ -2,6 +2,7 @@ import React from 'react';
 import {Box, Button, ChakraProvider, Flex, Heading, Spacer} from '@chakra-ui/react';
 import {CoursesWithDiscount} from './CoursesWithDiscount';
 import {useSyncMeta} from "../../hooks/useSyncMeta";
+import CouponExpiredNotification from "../../content/CouponExpiredNotification";
 
 const Newtab = () => {
   const syncMeta = useSyncMeta()
@@ -17,6 +18,7 @@ const Newtab = () => {
           <Button>Refresh</Button>
         </Flex>
       </Flex>
+      <CouponExpiredNotification />
       <CoursesWithDiscount/>
     </ChakraProvider>
   );

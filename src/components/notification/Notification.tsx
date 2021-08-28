@@ -1,53 +1,37 @@
-import {
-  Box,
-  Center,
-  Flex,
-  FlexProps,
-  Icon,
-  Stack,
-  StackDivider,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Center, Flex, FlexProps, Icon, useColorModeValue } from '@chakra-ui/react'
 import * as React from 'react'
 import { FiInfo } from 'react-icons/fi'
 
 interface NotificationProps extends FlexProps {
-  primaryAction: React.ReactNode
-  secondaryAction: React.ReactNode
+  color: string
 }
 
 export const Notification = (props: NotificationProps) => {
-  const { primaryAction, secondaryAction, children, ...flexProps } = props
+  const { children, color, ...flexProps } = props
+
   return (
     <Flex
-      width="md"
-      boxShadow="dark-lg"
-      borderRadius="base"
-      overflow="hidden"
+      fontSize="md"
+      direction={{ base: 'column', sm: 'row' }}
+      width="sm"
+      boxShadow="lg"
       bg={useColorModeValue('white', 'gray.700')}
+      borderRadius={{ base: 'none', sm: 'base' }}
+      overflow="hidden"
+      borderTopWidth={{ base: '4px', sm: '0' }}
+      borderColor={useColorModeValue(`${color}.500`, `${color}.500`)}
       {...flexProps}
     >
       <Center
-        bg={useColorModeValue('blue.500', 'blue.300')}
-        px="4"
         display={{ base: 'none', sm: 'flex' }}
+        bg={useColorModeValue(`${color}.500`, `${color}.500`)}
+        px="4"
       >
-        <Icon as={FiInfo} color={useColorModeValue('white', 'gray.900')} boxSize="9" />
+        <Icon as={FiInfo} boxSize="9" color={useColorModeValue('white', 'gray.900')} />
       </Center>
-      <Stack direction={{ base: 'column', sm: 'row' }} divider={<StackDivider />} spacing="0">
-        <Box px="4" py="3">
-          {children}
-        </Box>
-        <Stack
-          direction={{ base: 'row', sm: 'column' }}
-          height="full"
-          divider={<StackDivider />}
-          spacing="0"
-        >
-          {primaryAction}
-          {secondaryAction}
-        </Stack>
-      </Stack>
+      <Box px="4" py="3">
+        {children}
+      </Box>
     </Flex>
   )
 }
