@@ -1,6 +1,8 @@
 import {StorageKeys} from "../../models/storage-keys";
 import {waitForElmAsync} from "../../helpers/utils";
 
+const isTest = true
+
 setTimeout(mountCouponBadgeAsync, 2000)
 
 async function mountCouponBadgeAsync() {
@@ -16,7 +18,7 @@ async function mountCouponBadgeAsync() {
 
     courseElements.forEach(courseContainerEle => {
       const course = courses[courseContainerEle.href]
-      if(!course) return
+      if(!course && !isTest) return
 
       courseContainerEle.style.position = 'relative'
       const imageContainerEle = courseContainerEle.querySelector('[class^="course-card--image-wrapper"]')
@@ -25,7 +27,7 @@ async function mountCouponBadgeAsync() {
         return
       }
 
-      imageContainerEle.appendChild(getCouponAvailableBadgeElement(course.discountPercentage))
+      imageContainerEle.appendChild(getCouponAvailableBadgeElement(isTest ? '100% off' : course.discountPercentage))
     })
 
     function getCouponAvailableBadgeElement(discountPercentage: string) {
