@@ -12,6 +12,15 @@
       "matches": [
         "https://www.udemy.com/course/*"
       ]
+    },
+    {
+      "js": [
+        "content/udemy-course-search-page/udemy-course-search-page.tsx"
+      ],
+      "matches": [
+        "https://www.udemy.com/courses/search/*",
+        "https://www.udemy.com/topic/*"
+      ]
     }
   ],
   "permissions": [
