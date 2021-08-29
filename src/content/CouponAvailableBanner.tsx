@@ -40,9 +40,10 @@ function ApplyCouponButton(props: ApplyCouponButtonProps) {
     <Button
       isLoading={isLoading}
       loadingText="Applying"
+      colorScheme="orange"
       size="lg"
       fontSize="2xl"
-      variant="outline"
+      variant="solid"
       onClick={applyCoupon}>Apply</Button>
   )
 }
@@ -56,7 +57,7 @@ function BannerContent(props: BannerContentProps) {
   const {couponCode, discountPercentage} = props
 
   return (
-    <Text as="span" fontSize="3xl">Use <Badge fontSize="xl">{couponCode}</Badge> coupon code to get <Badge
+    <Text fontWeight="bold" as="span" fontSize="3xl">Use <Badge fontSize="xl">{couponCode}</Badge> coupon code to get <Badge
       fontSize="xl">{discountPercentage}</Badge> 😋</Text>
   )
 }

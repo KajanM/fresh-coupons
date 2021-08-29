@@ -5,10 +5,11 @@ import {CloseButton} from './CloseButton'
 interface GradientBannerProps extends BoxProps {
   actionButton?: JSX.Element
   bannerContent: JSX.Element
+  bannerBgColor?: string
 }
 
 function Banner(props: GradientBannerProps) {
-  const {actionButton, bannerContent, ...rest} = props
+  const {actionButton, bannerContent, bgColor, ...rest} = props
 
   const [isHidden, setIsHidden] = useState(false)
 
@@ -16,7 +17,7 @@ function Banner(props: GradientBannerProps) {
     <Box display={isHidden ? 'none' : 'block'} pos="fixed" bottom="0" left="0" width="full" as="section" {...rest}>
       <Box
         zIndex="9999"
-        bg="blue.600"
+        bg={bgColor || 'blue.600'}
         color="white"
         py="5"
         px={{base: '3', md: '6', lg: '8'}}
