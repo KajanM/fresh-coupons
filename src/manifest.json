@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "js": [
-        "content/udemy-course-details.tsx"
+        "content/udemy-course-details-page/udemy-course-details.tsx"
       ],
       "matches": [
         "https://www.udemy.com/course/*"

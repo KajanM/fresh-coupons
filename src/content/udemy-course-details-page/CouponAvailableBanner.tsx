@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Badge, Button, ButtonProps, Text} from "@chakra-ui/react";
-import Banner from "../components/banner/Banner";
-import {changeInputValue} from "../helpers/utils";
+import Banner from "../../components/banner/Banner";
+import {changeInputValue} from "../../helpers/utils";
 
 interface ApplyCouponButtonProps extends ButtonProps {
   onCouponApplied: () => any

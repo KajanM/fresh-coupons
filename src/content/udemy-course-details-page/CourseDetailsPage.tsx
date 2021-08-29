@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 
 import {ChakraProvider} from '@chakra-ui/react';
-import {useCourses} from "../hooks/useCourses";
-import {Course} from "../models/course";
-import {CouponState} from "../helpers/coupon-state";
-import {determineCouponStateAsync} from "../helpers/udemy-course-details-page-helpers";
+import {useCourses} from "../../hooks/useCourses";
+import {Course} from "../../models/course";
+import {CouponState} from "../../helpers/coupon-state";
+import {determineCouponStateAsync} from "../../helpers/udemy-course-details-page-helpers";
 import CouponAvailableBanner from "./CouponAvailableBanner";
 import CouponAppliedBanner from "./CouponAppliedBanner";
 import CouponExpiredBanner from "./CouponExpiredBanner";
