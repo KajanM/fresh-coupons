@@ -16,7 +16,7 @@ function Banner(props: GradientBannerProps) {
     <Box display={isHidden ? 'none' : 'block'} pos="fixed" bottom="0" left="0" width="full" as="section" {...rest}>
       <Box
         zIndex="9999"
-        bg="purple.600"
+        bg="blue.600"
         color="white"
         py="5"
         px={{base: '3', md: '6', lg: '8'}}
