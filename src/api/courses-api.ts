@@ -1,7 +1,29 @@
 import { SyncMeta } from '../models/sync-meta'
 import { Course } from '../models/course'
+import {StorageKeys} from "../models/storage-keys";
+import {SyncStorage} from "../models/sync-storage";
 
 const API_PREFIX = 'https://bitbucket.org/gmkajan/fresh-coupons-data/raw/master/'
+
+export async function initializeCoursesFromApiAsync() {
+  const meta = await fetchSyncMetaAsync()
+  console.log('meta', meta)
+  if(meta == null) return
+
+  chrome.storage.sync.get([StorageKeys.Meta], async (result: SyncStorage) => {
+    const lastSyncMeta = result[StorageKeys.Meta]
+    if(lastSyncMeta && lastSyncMeta.lastSynced === meta.lastSynced) return // no new updates
+
+    const courses = await fetchCoursesAsync(meta.lastSynced)
+
+    chrome.storage.local.set({ [StorageKeys.Courses]: courses }, () => {
+      console.log('courses initialized')
+
+      chrome.storage.sync.set({[StorageKeys.Meta]: meta})
+    })
+
+  })
+}
 
 export async function fetchCoursesAsync(timestamp: string): Promise<{ [id: string]: Course } | null> {
   try {

@@ -15,4 +15,7 @@ export interface Course {
   courseProviderRating: string,
   courseProviderUri: string,
   isValidCoupon: boolean,
+  category?: string
+  ratingValue: number
+  ratingCount: number
 }
