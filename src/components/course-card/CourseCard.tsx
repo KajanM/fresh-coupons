@@ -1,10 +1,11 @@
 import {
   Badge,
-  // Avatar,
   Box,
-  Button, Center,
+  Button,
+  Center,
   HStack,
-  Icon, Link,
+  Icon,
+  Link,
   Stack,
   Tag,
   Text,
@@ -12,7 +13,7 @@ import {
   Wrap,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import {HiUserGroup, HiOutlineCalendar, HiOutlineClock} from 'react-icons/hi'
+import {HiOutlineCalendar, HiOutlineClock, HiUserGroup} from 'react-icons/hi'
 import {Card} from './Card'
 import {CourseRating} from './CourseRating'
 import {Course} from "../../models/course";
@@ -40,16 +41,6 @@ function CourseCard(props: CourseCardProps) {
           spacing={{base: '3', md: '10'}}
           align="flex-start"
         >
-          {/*<Stack spacing="4">*/}
-          {/*  <Avatar*/}
-          {/*    size="2xl"*/}
-          {/*    src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjY5fHxsYWR5JTIwc21pbGluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"*/}
-          {/*    name="Melinda Paul"*/}
-          {/*  />*/}
-          {/*  <Button width="full" colorScheme="blue" display={{ base: 'none', md: 'initial' }}>*/}
-          {/*    Contact me*/}
-          {/*  </Button>*/}
-          {/*</Stack>*/}
           <Box>
             <HStack spacing="2">
               <Link
@@ -65,12 +56,6 @@ function CourseCard(props: CourseCardProps) {
               <Center>
                 <Badge variant="subtle" colorScheme="green">Udemy</Badge>
               </Center>
-              {/*<HStack fontSize={{base: 'md', md: 'lg'}}>*/}
-              {/*  <Text as="span" color={useColorModeValue('gray.500', 'gray.300')} lineHeight="1">*/}
-              {/*    @meldesigner*/}
-              {/*  </Text>*/}
-              {/*  <Icon as={HiShieldCheck} color="green.500"/>*/}
-              {/*</HStack>*/}
             </HStack>
             <HStack my="2" spacing="1">
               <Icon as={GrLanguage} color="gray.400"/>
@@ -85,7 +70,6 @@ function CourseCard(props: CourseCardProps) {
                 {course?.category || 'Misc'}
               </Tag>
             </HStack>
-            {/*<Text mt="2">Graphic Designer and WordPress Expert</Text>*/}
             <Wrap shouldWrapChildren my="4" spacing="4">
               <CourseRating reviewCount={course.ratingCount} rating={course.ratingValue}/>
               <HStack>
@@ -137,7 +121,7 @@ function CourseCard(props: CourseCardProps) {
                 color={useColorModeValue('gray.600', 'gray.300')}
               >
                 {course.courseProviderName}
-                <ExternalLinkIcon mx="2" />
+                <ExternalLinkIcon mx="2"/>
               </Link>
             </HStack>
           </Box>
