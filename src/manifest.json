@@ -24,7 +24,8 @@
     }
   ],
   "permissions": [
-    "storage"
+    "storage",
+    "alarms"
   ],
   "chrome_url_overrides": {
     "newtab": "pages/newtab/index.html"
