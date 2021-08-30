@@ -1,13 +1,22 @@
-import {Box, Heading, Stack, Text, useColorModeValue as mode} from '@chakra-ui/react'
+import {Box, Button, Heading, Stack, Text, useColorMode, useColorModeValue as mode} from '@chakra-ui/react'
 import * as React from 'react'
 import {useCourses} from '../../hooks/useCourses'
 import CourseCard from "../../components/course-card/CourseCard";
+import {FaMoon, FiSun} from "react-icons/all";
 
 export const CoursesWithDiscount = () => {
   const courses = useCourses()
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <Box as="section" bg={mode('gray.50', 'inherit')} py="12">
+    <Box position="relative" as="section" bg={mode('gray.50', 'inherit')} py="12">
+      <Button
+        position="fixed"
+        top="10"
+        right="10"
+        onClick={toggleColorMode}>
+        {colorMode === "light" ? <FaMoon /> : <FiSun />}
+      </Button>
       <Box textAlign="center" mb="8" maxW="md" mx="auto">
         <Heading size="2xl" fontWeight="extrabold" letterSpacing="tight">
           Fresh Coupons
