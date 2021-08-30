@@ -17,7 +17,7 @@ import {HiOutlineCalendar, HiOutlineClock, HiUserGroup} from 'react-icons/hi'
 import {Card} from './Card'
 import {CourseRating} from './CourseRating'
 import {Course} from "../../models/course";
-import {BsPersonSquare, GrLanguage} from "react-icons/all";
+import {BsPersonSquare, MdLanguage} from "react-icons/all";
 import {ExternalLinkIcon} from "@chakra-ui/icons"
 
 interface CourseCardProps {
@@ -58,7 +58,7 @@ function CourseCard(props: CourseCardProps) {
               </Center>
             </HStack>
             <HStack my="2" spacing="1">
-              <Icon as={GrLanguage} color="gray.400"/>
+              <Icon boxSize={4} as={MdLanguage} color="gray.400"/>
               <Text
                 fontSize="sm"
                 fontWeight="medium"
@@ -66,7 +66,7 @@ function CourseCard(props: CourseCardProps) {
               >
                 {course.language}
               </Text>
-              <Tag px="3" color={useColorModeValue('gray.600', 'gray.300')}>
+              <Tag ml="4" px="3" color={useColorModeValue('gray.600', 'gray.300')}>
                 {course?.category || 'Misc'}
               </Tag>
             </HStack>
@@ -84,7 +84,7 @@ function CourseCard(props: CourseCardProps) {
               </HStack>
 
               <HStack spacing="1">
-                <Icon as={HiOutlineClock} color="gray.400"/>
+                <Icon boxSize={4} as={HiOutlineClock} color="gray.400"/>
                 <Text
                   fontSize="sm"
                   fontWeight="medium"
@@ -94,7 +94,7 @@ function CourseCard(props: CourseCardProps) {
                 </Text>
               </HStack>
               <HStack spacing="1">
-                <Icon as={HiOutlineCalendar} color="gray.400"/>
+                <Icon boxSize={4} as={HiOutlineCalendar} color="gray.400"/>
                 <Text
                   fontSize="sm"
                   fontWeight="medium"
