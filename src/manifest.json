@@ -7,6 +7,15 @@
   "content_scripts": [
     {
       "js": [
+        "content/udemy-fresh-coupons-main-banner/App.tsx"
+      ],
+      "matches": [
+        "https://www.udemy.com/courses/*",
+        "https://www.udemy.com/"
+      ]
+    },
+    {
+      "js": [
         "content/udemy-course-details-page/App.tsx"
       ],
       "matches": [
