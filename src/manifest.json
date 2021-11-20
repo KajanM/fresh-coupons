@@ -36,8 +36,5 @@
     "storage",
     "alarms"
   ],
-  "action": {
-    "default_popup": "pages/popup/index.html"
-  },
   "name": "Fresh Coupons"
 }
