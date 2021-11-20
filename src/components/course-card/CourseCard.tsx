@@ -31,9 +31,13 @@ function EnrolledStudentsCount({enrolledStudentsCount, ...props}: EnrolledStuden
   )
 }
 
-function CourseDuration({duration}: { duration: string | null }) {
+function CourseDuration({duration, isFreeCourse = false}: { duration: string | null, isFreeCourse : boolean }) {
   if (!duration) {
     return <></>
+  }
+
+  if (isFreeCourse) {
+    duration = `${Math.round(+duration/360)/10} hours`
   }
 
   return (
@@ -207,7 +211,7 @@ function CourseCard(props: CourseCardProps) {
           <HStack my="4" spacing="4">
             <CourseRating reviewCount={course.rating?.count} rating={course.rating?.averageValue}/>
             <EnrolledStudentsCount enrolledStudentsCount={course.enrolledStudentsCount}/>
-            <CourseDuration duration={course.duration}/>
+            <CourseDuration duration={course.duration} isFreeCourse={isAlreadyAFreeCourse}/>
             <LastUpdated lastUpdated={course.lastUpdated}/>
           </HStack>
           <Box fontSize="sm" noOfLines={2}>
