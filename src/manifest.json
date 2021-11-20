@@ -36,5 +36,13 @@
     "storage",
     "alarms"
   ],
-  "name": "Fresh Coupons"
+  "name": "Fresh Coupons",
+  "version": "0.0.1",
+  "homepage_url": "https://github.com/KajanM/fresh-coupons",
+  "description": "Automatically find and apply discount coupon codes for Udemy courses",
+  "icons": {
+    "48": "assets/img/icon-48.png",
+    "128": "assets/img/icon-128.png"
+  },
+  "author": "Kajan M (https://www.kajanm.com/)"
 }
