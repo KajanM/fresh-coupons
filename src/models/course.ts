@@ -1,21 +1,19 @@
+import {Rating} from "./rating";
+import {Instructor} from "./instructor";
+
 export interface Course {
-  title: string,
-  shortDescription: string,
-  language: string,
-  courseUri: string,
-  couponCode: string,
-  imageUri: string,
-  priceAfterCouponIsApplied: string,
-  discountPercentage: string,
-  courseDuration: string,
-  rating: string,
-  enrolledStudentsCount?: string,
-  lastUpdated: string,
-  courseProviderName: string,
-  courseProviderRating: string,
-  courseProviderUri: string,
-  isValidCoupon: boolean,
-  category?: string
-  ratingValue?: number
-  ratingCount?: number
+  courseId: number
+  title: string
+  shortDescription: string
+  longDescription: string | null
+  language: string
+  courseUri: string
+  imageUri: string
+  duration: string
+  enrolledStudentsCount: string | null
+  lastUpdated: string | null
+  targetAudiences: string[]
+  tags: string[] | null
+  rating: Rating | null
+  instructors: Instructor[] | null
 }

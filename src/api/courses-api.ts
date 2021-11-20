@@ -1,12 +1,14 @@
 import { SyncMeta } from '../models/sync-meta'
-import { Course } from '../models/course'
 import {StorageKeys} from "../models/storage-keys";
 import {SyncStorage} from "../models/sync-storage";
+import {CourseDetailsFile} from "../models/course-details-file";
+import {courses} from "../assets/mock/udemy-1";
+import {meta} from "../assets/mock/meta-mock";
 
-const API_PREFIX = 'https://bitbucket.org/gmkajan/fresh-coupons-data/raw/master/'
+const API_PREFIX = 'https://raw.githubusercontent.com/fresh-coupons/fresh-coupons-data/main/'
 
-export async function initializeCoursesFromApiAsync() {
-  const meta = await fetchSyncMetaAsync()
+export async function initializeCoursesFromApiAsync(doGetMock = false) {
+  const meta = await fetchSyncMetaAsync(doGetMock)
   console.log('meta', meta)
   if(meta == null) return
 
@@ -14,7 +16,7 @@ export async function initializeCoursesFromApiAsync() {
     const lastSyncMeta = result[StorageKeys.Meta]
     if(lastSyncMeta && lastSyncMeta.lastSynced === meta.lastSynced) return // no new updates
 
-    const courses = await fetchCoursesAsync(meta.lastSynced)
+    const courses = await fetchCoursesAsync(meta.lastSynced, doGetMock)
 
     chrome.storage.local.set({ [StorageKeys.Courses]: courses }, () => {
       console.log('courses initialized')
@@ -25,9 +27,13 @@ export async function initializeCoursesFromApiAsync() {
   })
 }
 
-export async function fetchCoursesAsync(timestamp: string): Promise<{ [id: string]: Course } | null> {
+export async function fetchCoursesAsync(timestamp: string, doGetMock = false): Promise<CourseDetailsFile | null> {
+  if(doGetMock) {
+   return courses;
+  }
+
   try {
-    const response = await fetch(`${API_PREFIX}udemy-${timestamp}.json`)
+    const response = await fetch(`${API_PREFIX}${timestamp}.json`)
     if (!response.ok) {
       console.error(`got ${response.status}:${response.statusText} status code, when fetching course data`)
       return null
@@ -40,8 +46,12 @@ export async function fetchCoursesAsync(timestamp: string): Promise<{ [id: strin
   return null
 }
 
-export async function fetchSyncMetaAsync(): Promise<SyncMeta | null> {
+export async function fetchSyncMetaAsync(doGetMock = false): Promise<SyncMeta | null> {
   console.log('fetching sync meta')
+  if(doGetMock) {
+    return meta
+  }
+
   try {
     const response = await fetch(`${API_PREFIX}meta.json`)
     if(!response.ok) {

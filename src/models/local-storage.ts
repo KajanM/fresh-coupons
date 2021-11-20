@@ -1,6 +1,6 @@
 import { StorageKeys } from './storage-keys'
-import { Course } from './course'
+import {CourseDetailsFile} from "./course-details-file";
 
 export interface LocalStorage {
-  [StorageKeys.Courses]?: Record<string, Course>
+  [StorageKeys.Courses]?: CourseDetailsFile
 }

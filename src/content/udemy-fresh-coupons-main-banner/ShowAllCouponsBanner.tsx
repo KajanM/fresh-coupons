@@ -12,7 +12,7 @@ function BannerContent() {
 function ShowAllCouponsBanner() {
   return (
       <ChakraProvider theme={theme}>
-        <Banner actionButton={<AllCoupons/>} bgColor="blue.400" bannerContent={<BannerContent/>}/>
+        <Banner actionButton={<AllCoupons/>} bgColor="#5624d0" bannerContent={<BannerContent/>}/>
       </ChakraProvider>
   );
 }

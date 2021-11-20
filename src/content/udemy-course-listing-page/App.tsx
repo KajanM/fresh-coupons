@@ -1,6 +1,8 @@
 import {StorageKeys} from "../../models/storage-keys";
+import {CourseDetailsFile} from "../../models/course-details-file";
+import {CourseDetailsWithCouponCode} from "../../models/course-details-with-coupon-code";
 
-const isTest = true
+const isTest = false
 const couponAvailableBadgeClassName = 'fresh-coupons--coupon-available-badge';
 
 setInterval(mountCouponBadgeAsync, 3000)
@@ -12,10 +14,10 @@ async function mountCouponBadgeAsync() {
   if (!courseElements.length) return;
 
   chrome.storage.local.get([StorageKeys.Courses], result => {
-    const courses = result[StorageKeys.Courses]
+    const courses: CourseDetailsFile = result[StorageKeys.Courses]
 
     courseElements.forEach(courseContainerEle => {
-      const course = courses[courseContainerEle.href]
+      const course: CourseDetailsWithCouponCode = courses.coursesWithCoupon[courseContainerEle.href] || courses.freeCourses[courseContainerEle.href]
       if(!course && !isTest) return
 
       if(courseContainerEle.querySelector(`.${couponAvailableBadgeClassName}`)) return
@@ -24,10 +26,10 @@ async function mountCouponBadgeAsync() {
       const imageContainerEle = courseContainerEle.querySelector('[class^="course-card--image-wrapper"]')
       if(!imageContainerEle) return
 
-      imageContainerEle.appendChild(getCouponAvailableBadgeElement(isTest ? '100% off' : course.discountPercentage))
+      imageContainerEle.appendChild(getCouponAvailableBadgeElement(course.couponData?.discountPercentage, course.isAlreadyAFreeCourse))
     })
 
-    function getCouponAvailableBadgeElement(discountPercentage: string) {
+    function getCouponAvailableBadgeElement(discountPercentage: number | undefined, isAlreadyAFreeCourse = false) {
       const couponAvailableBadge = document.createElement('div')
       couponAvailableBadge.classList.add(couponAvailableBadgeClassName)
       couponAvailableBadge.style.backgroundColor = "orange"
@@ -37,7 +39,7 @@ async function mountCouponBadgeAsync() {
       couponAvailableBadge.style.bottom = "0"
       couponAvailableBadge.style.left = "0"
       couponAvailableBadge.style.padding = "5px 10px"
-      couponAvailableBadge.innerText = `Coupon available (${discountPercentage})`
+      couponAvailableBadge.innerText = isAlreadyAFreeCourse ? 'FREE' : `Coupon available (${discountPercentage}% OFF)`
       return couponAvailableBadge;
     }
   })

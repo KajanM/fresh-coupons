@@ -3,13 +3,13 @@ import * as React from 'react'
 import { HiStar } from 'react-icons/hi'
 
 interface CustomerReviewsProps extends StackProps {
-  rating?: number
+  rating?: string
   reviewCount?: number
 }
 
 export const CourseRating = (props: CustomerReviewsProps) => {
   const { rating, reviewCount, ...stackProps } = props
-  if(reviewCount === 0) return (
+  if(!reviewCount || !rating) return (
     <Text fontSize="sm" fontWeight="medium" color={useColorModeValue('gray.600', 'gray.300')}>
      Not enough rating
     </Text>
@@ -22,7 +22,7 @@ export const CourseRating = (props: CustomerReviewsProps) => {
       {length && reviewCount && (
         <>
           <Flex align="center">
-            {Array.from({length: rating!}).map((_, index) => (
+            {Array.from({length: +rating!}).map((_, index) => (
               <Icon key={index} as={HiStar} color="orange.500"/>
             ))}
           </Flex>
