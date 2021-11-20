@@ -37,7 +37,7 @@
     "alarms"
   ],
   "name": "Fresh Coupons",
-  "version": "0.0.1",
+  "version": "0.0.0.1",
   "homepage_url": "https://github.com/KajanM/fresh-coupons",
   "description": "Automatically find and apply discount coupon codes for Udemy courses",
   "icons": {
