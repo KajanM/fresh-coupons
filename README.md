@@ -2,6 +2,11 @@
 
 Automatically find and apply discount coupons for Udemy courses.
 
+## Chrome web store
+
+This extension is available in the [Chrome web store](https://chrome.google.com/webstore/detail/fresh-coupons/pbnfeejfjlmmjfgnmmfpalhlpjidlgie).
+
+You can add it to any Chromium browser like Brave, Chrome and Microsoft Edge.
 
 ## Screenshots
 
