@@ -5,7 +5,7 @@ import {CourseDetailsFile} from "../models/course-details-file";
 import {courses} from "../assets/mock/udemy-1";
 import {meta} from "../assets/mock/meta-mock";
 
-const API_PREFIX = 'https://raw.githubusercontent.com/fresh-coupons/fresh-coupons-data/main/'
+const API_PREFIX = 'https://raw.githubusercontent.com/fresh-coupons/fresh-coupons-data/main/udemy/v2/'
 
 export async function initializeCoursesFromApiAsync(doGetMock = false) {
   const meta = await fetchSyncMetaAsync(doGetMock)
