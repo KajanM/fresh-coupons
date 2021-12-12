@@ -8,6 +8,10 @@ This extension is available in the [Chrome web store](https://chrome.google.com/
 
 You can add it to any Chromium browser like Brave, Chrome and Microsoft Edge.
 
+## Demo
+
+![demo](screenshots/demo.gif)
+
 ## Screenshots
 
 ![fresh-coupons-chrome-extension-screenshot-1](screenshots/1.png)
